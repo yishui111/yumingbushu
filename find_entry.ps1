@@ -17,6 +17,9 @@ param(
 )
 $ErrorActionPreference = 'SilentlyContinue'
 
+# 输出编码与 cmd（GBK 936）对齐，避免 for /f 捕获中文路径时乱码崩溃
+try { [Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding(936) } catch {}
+
 $namesFile = Join-Path $PSScriptRoot 'entry_names.json'
 if (-not (Test-Path -LiteralPath $namesFile)) {
     Write-Error "entry_names.json not found next to find_entry.ps1"
