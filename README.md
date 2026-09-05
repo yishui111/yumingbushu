@@ -28,8 +28,8 @@
 
 ## 🎯 主要功能
 
-- 🔐 **自研登录网关**（`login_gateway/`，127.0.0.1:8091）：自绘登录页 + HMAC 签名会话 Cookie，登录后才转发 HTTP / WebSocket 到 Open WebUI（8088）；凭据只来自 `config.json`（不入库），缺配置即报错拒绝启动，**绝无内置默认口令**
-- 🖥️ **自研运维面板**（`ops_dashboard/`，127.0.0.1:8090）：状态卡片（对话/Ollama/数字人/TTS + 隧道）、GPU 显存与磁盘进度条、进程内存列表、8 个日志在线查看、一键生成诊断包
+- 🔐 **自研登录网关**（`login_gateway/`，127.0.0.1:8291）：自绘登录页 + HMAC 签名会话 Cookie，登录后才转发 HTTP / WebSocket 到 Open WebUI（8088）；凭据只来自 `config.json`（不入库），缺配置即报错拒绝启动，**绝无内置默认口令**
+- 🖥️ **自研运维面板**（`ops_dashboard/`，127.0.0.1:8290）：状态卡片（对话/Ollama/数字人/TTS + 隧道）、GPU 显存与磁盘进度条、进程内存列表、8 个日志在线查看、一键生成诊断包
 - 🚇 **Cloudflare Tunnel 集成**：`start_cloudflared_2.bat` / `stop_cloudflared_1.bat` 管理隧道服务，支持开机自启（Windows 服务）
 - ▶️ **成套启停脚本**：`start.bat`/`stop.bat` 总入口 + 分步 `start_local_services_1.bat` → `start_login_gateway.bat` → `start_cloudflared_2.bat`（口诀：**先内容后通道 / 先通道后内容**）
 - 🩺 **健康检查与自动拉起**：`auto_health_check.bat`（配计划任务每 5 分钟体检，Open WebUI 挂了自动拉起）
@@ -120,7 +120,7 @@ cd yumingbushu
 | 步骤 | 操作 | 说明 |
 |---|---|---|
 | 1 | 双击 `start_local_services_1.bat` | 启动本地服务（Open WebUI/Ollama/数字人/TTS），等 1-3 分钟模型加载 |
-| 2 | 双击 `start_login_gateway.bat` | 启动登录网关（127.0.0.1:8091） |
+| 2 | 双击 `start_login_gateway.bat` | 启动登录网关（127.0.0.1:8291） |
 | 3 | 双击 `start_cloudflared_2.bat` | 启动隧道（UAC 点「是」），自动打开 https://nas.905283.xyz |
 
 **一键下线**：双击 `stop.bat`（= 隧道 → 登录网关 → 本地服务）。分步则先 `stop_cloudflared_1.bat` 再 `stop_login_gateway.bat` 再 `stop_local_services_2.bat`。
@@ -129,8 +129,8 @@ cd yumingbushu
 
 ### 5. 验证
 
-- 本机浏览器打开 http://localhost:8088（Open WebUI）与 http://127.0.0.1:8091（登录网关登录页）
-- 运维面板 http://127.0.0.1:8090 四服务 + 隧道全绿
+- 本机浏览器打开 http://localhost:8088（Open WebUI）与 http://127.0.0.1:8291（登录网关登录页）
+- 运维面板 http://127.0.0.1:8290 四服务 + 隧道全绿
 - **用手机流量**（关 Wi-Fi）打开 https://nas.905283.xyz → 先见登录页，登录后进入「知音」，即部署成功
 
 ## 📥 大件资源下载（运行期准备，不入库）
@@ -149,7 +149,7 @@ git commit -m "feat: xxx"
 git push origin main
 ```
 
-- 网关/面板是标准 FastAPI 应用：`python -m uvicorn main:app --host 127.0.0.1 --port 8091 --app-dir login_gateway`（8090 同理）
+- 网关/面板是标准 FastAPI 应用：`python -m uvicorn main:app --host 127.0.0.1 --port 8291 --app-dir login_gateway`（8290 同理）
 - 依赖：`fastapi`、`uvicorn`、`httpx`、`websockets`（通常由 duihuamoxing 的 venv 提供）
 
 ## ❓ 常见问题（FAQ）

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""ZhiYin Ops Dashboard - local operations web console (127.0.0.1:8090)."""
+"""ZhiYin Ops Dashboard - local operations web console (127.0.0.1:8290)."""
 import json
 import os
 import socket
@@ -190,4 +190,4 @@ def api_diag():
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app, host='127.0.0.1', port=8090)
+    uvicorn.run(app, host='127.0.0.1', port=8290)

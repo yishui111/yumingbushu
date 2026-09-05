@@ -61,7 +61,7 @@ Cloudflare Tunnel 的思路是：**让家里的电脑主动向外网发起连接
 - Subdomain：喜欢的名字，如 `nas`
 - Domain：选你的主域名（如 905283.xyz）
 - Type：HTTP
-- URL：目标地址。本项目公网入口走**登录网关**填 `localhost:8091`；
+- URL：目标地址。本项目公网入口走**登录网关**填 `localhost:8291`；
   若要直连内容系统则填 `localhost:8088`（此时建议开启 Open WebUI 自带登录）
 - 保存后约 30 秒生效
 

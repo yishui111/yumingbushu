@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ZhiYin Login Gateway - a fresh, self-written login gate in front of Open WebUI.
 
-Listens on 127.0.0.1:8091. Users must sign in with the configured account
+Listens on 127.0.0.1:8291. Users must sign in with the configured account
 (password from config.json). Once signed in (signed cookie), all HTTP and
 WebSocket traffic is proxied to Open WebUI on 127.0.0.1:8088.
 
@@ -239,4 +239,4 @@ async def websockets_connect(url):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8091)
+    uvicorn.run(app, host='127.0.0.1', port=8291)

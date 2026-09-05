@@ -79,7 +79,7 @@ Open WebUI「知音」:8088            （内容系统，duihuamoxing）
 1. Tunnels → Create a tunnel → 命名（如 home-tunnel）
 2. 复制生成的 Token → 同上存入 `tunnel-token.txt`
 3. 进该隧道 → Public Hostname → Add：`nas` + 主域名 + HTTP + URL 填
-   `localhost:8091`（公网入口先过登录网关；若你想直连 8088 用 Open WebUI 自带登录，则填 8088）
+   `localhost:8291`（公网入口先过登录网关；若你想直连 8088 用 Open WebUI 自带登录，则填 8088）
 4. 保存，30 秒内生效
 
 > ⚠️ `tunnel-token.txt` 相当于隧道钥匙，等于仓库里的 `cloudflared\` 已被 `.gitignore` 排除，请勿外发。
@@ -121,7 +121,7 @@ cloudflared service install <tunnel-token.txt 里的内容>
 | 顺序 | 上线 | 下线 |
 |---|---|---|
 | 1 | `start_local_services_1.bat`：启动本地服务，等 1-3 分钟模型加载，验证 http://localhost:8088 | `stop_cloudflared_1.bat`：先关外网通道 |
-| 2 | `start_login_gateway.bat`：启动登录网关，验证 http://127.0.0.1:8091 | `stop_login_gateway.bat` |
+| 2 | `start_login_gateway.bat`：启动登录网关，验证 http://127.0.0.1:8291 | `stop_login_gateway.bat` |
 | 3 | `start_cloudflared_2.bat`：启动隧道（UAC），自动打开公网域名 | `stop_local_services_2.bat`：最后关本地服务 |
 
 > `start_local_services_1.bat` / `stop_local_services_2.bat` 会自动在 `..\duihuamoxing` 下
@@ -176,8 +176,8 @@ schtasks /Create /TN "ZhiYinBackup" /TR "<父目录>\yumingbushu\backup_webui.ba
 ## 7. 验证（部署成功标准）
 
 1. `sc query cloudflared` → RUNNING（若已装服务）
-2. 本机 http://localhost:8088 能打开「知音」；http://127.0.0.1:8091 出现登录页
-3. http://127.0.0.1:8090 运维面板：四服务 + 隧道全绿
+2. 本机 http://localhost:8088 能打开「知音」；http://127.0.0.1:8291 出现登录页
+3. http://127.0.0.1:8290 运维面板：四服务 + 隧道全绿
 4. **手机流量**（关 Wi-Fi）打开 https://nas.905283.xyz：先登录，后见「知音」，即成功
 
 ## 8. 常见问题排查
@@ -204,7 +204,7 @@ schtasks /Create /TN "ZhiYinBackup" /TR "<父目录>\yumingbushu\backup_webui.ba
 ## 10. 修改域名映射（换子域名 / 换端口）
 
 1. https://dash.cloudflare.com → Zero Trust → Networks → Tunnels → 你的隧道
-2. Public Hostname → Edit：改子域名，或把 URL 从 `localhost:8091` 改成新目标
+2. Public Hostname → Edit：改子域名，或把 URL 从 `localhost:8291` 改成新目标
 3. 保存后约 30 秒生效，**无需动本机**
 
 ## 11. 安全建议（强烈建议）

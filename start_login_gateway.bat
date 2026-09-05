@@ -1,5 +1,5 @@
 @echo off
-rem Start ZhiYin Login Gateway (http://127.0.0.1:8091) in front of Open WebUI.
+rem Start ZhiYin Login Gateway (http://127.0.0.1:8291) in front of Open WebUI.
 rem Requires duihuamoxing placed next to this repo (its venv python is reused).
 setlocal
 set "PYEXE=%~dp0..\duihuamoxing\venv\Scripts\python.exe"
@@ -14,7 +14,7 @@ if not exist "%~dp0login_gateway\config.json" (
     exit /b 1
 )
 echo Starting ZhiYin Login Gateway...
-start "ZhiYin-LoginGateway" "%PYEXE%" -m uvicorn main:app --host 127.0.0.1 --port 8091 --app-dir "%~dp0login_gateway"
+start "ZhiYin-LoginGateway" "%PYEXE%" -m uvicorn main:app --host 127.0.0.1 --port 8291 --app-dir "%~dp0login_gateway"
 timeout /t 3 /nobreak >nul
-start "" "http://127.0.0.1:8091"
+start "" "http://127.0.0.1:8291"
 exit /b 0
